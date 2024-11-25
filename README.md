@@ -34,23 +34,26 @@ Criterios de aceptación:
 - La placa debe cumplir el estándar de 3 letras y 3 o 4 dígitos
 - La fecha debe tener formato dd-MM-yyyy
 - La hora debe tener formato de 24 horas con minutos y segundos
-- El ingreso debe ser sólo en el horario admisible
+- El ingreso entre semana debe ser desde las 07:00:00 hasta las 20:00
+- El ingreso en sábado debe ser desde las 08:00 hasta las 13:00:00
+- No hay ingresos los domingos
 - Un vehículo no podrá ingresar si existe un registro previo de ingreso "abierto"
 
 
 Salida de vehículo
-==================
+------------------
 Se debe registrar la salida de un vehículo que ha registrado
 previamente su ingreso en el mismo día.
 
 Criterios de aceptación:
 
 - Sólo podrán salir vehículos que han ingresado el mismo día.
-- Sólo podrán salir vehículos en los horarios permitidos.
+- La salida entre semana debe ser hasta las 20:30:00
+- La salida en sábado debe ser hasta las 13:30:00 
 
 
 Consulta de información
-=======================
+-----------------------
 
 Se debe incluir un servicio para consulta de todos los registros y de
 los registros "abiertos" (vehículos que no han salido aún).
@@ -63,7 +66,6 @@ Los instaladores empleados en el ejercicio se encuentran en el siguiente link
 (no hace falta crear una cuenta de Dropbox):
 
 https://www.dropbox.com/scl/fo/nznv65at6sk6vxko99keg/AGbhu3nr87DBU0D7wlsBkAQ?rlkey=dd1e9dnar795u4apb1flqk3rd&dl=0
-
 
 
 Configuración de WildFly
