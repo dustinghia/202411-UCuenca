@@ -170,13 +170,27 @@ public class Bitacora implements Serializable {
 				|| fechaHoraIngreso.getDayOfWeek().equals(DayOfWeek.WEDNESDAY)
 				|| fechaHoraIngreso.getDayOfWeek().equals(DayOfWeek.THURSDAY)
 				|| fechaHoraIngreso.getDayOfWeek().equals(DayOfWeek.FRIDAY)) {
-			if(fechaHoraIngreso.getHour() > 19  || fechaHoraIngreso.getHour() < 7)
+			if(fechaHoraIngreso.getHour() > 20
+					|| (fechaHoraIngreso.getHour() == 20 && fechaHoraIngreso.getMinute() > 0)
+					|| (fechaHoraIngreso.getHour() == 20 && fechaHoraIngreso.getSecond() > 0)) {
 				throw new RuntimeException(MSG_HORARIO_INGRESO_NO_ADMITIDO);
+			}
+			
+			if(fechaHoraIngreso.getHour() < 7) {
+				throw new RuntimeException(MSG_HORARIO_INGRESO_NO_ADMITIDO);
+			}
 		}
 		
-		if(fechaHoraIngreso.getDayOfWeek().equals(DayOfWeek.SATURDAY))
-			if(fechaHoraIngreso.getHour() > 12 || fechaHoraIngreso.getHour() < 8)
+		if(fechaHoraIngreso.getDayOfWeek().equals(DayOfWeek.SATURDAY)) {
+			if(fechaHoraIngreso.getHour() > 12 
+					|| (fechaHoraIngreso.getHour() == 12 && fechaHoraIngreso.getMinute() > 0)
+					|| (fechaHoraIngreso.getHour() == 12 && fechaHoraIngreso.getSecond() > 0))
 				throw new RuntimeException(MSG_HORARIO_INGRESO_NO_ADMITIDO);
+			
+			if(fechaHoraIngreso.getHour() < 8) {
+				throw new RuntimeException(MSG_HORARIO_INGRESO_NO_ADMITIDO);
+			}
+		}
 	}
 	
 	
