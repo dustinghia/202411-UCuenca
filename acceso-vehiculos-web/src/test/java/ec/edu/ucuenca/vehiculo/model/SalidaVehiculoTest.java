@@ -25,7 +25,7 @@ public class SalidaVehiculoTest extends BaseTest {
 	}
 	
 	@Test
-	public void salidaDeVehiculoQueHaIngresadoPreviamenteTest() throws BitacoraException {
+	public void salidaDeVehiculoQueHaIngresadoPreviamente_Ok() throws BitacoraException {
 		String fechaIngreso = "07-11-2024";
         String horaIngreso = "09:12:30";
         bitacora.registrarIngreso(placaValida, fechaIngreso, horaIngreso);
@@ -37,7 +37,7 @@ public class SalidaVehiculoTest extends BaseTest {
 	}
 	
 	@Test
-    public void validarSalidaDeUnVehiculoQueHaIngresadoPreviamenteTest() throws BitacoraException {
+    public void validarSalidaDeUnVehiculoQueHaIngresadoPreviamente() throws BitacoraException {
 
 		String fechaIngreso = "07-11-2024";
         String horaIngreso = "09:12:30";
@@ -54,7 +54,7 @@ public class SalidaVehiculoTest extends BaseTest {
     }
 	
 	@Test
-	public void validarQueUnVehiculoQueSoloHaIngresadoNoTieneUnaSalidaRegistradaTest() throws BitacoraException {
+	public void validarQueUnVehiculoQueSoloHaIngresadoNoTieneUnaSalidaRegistrada() throws BitacoraException {
 
 		String fechaIngreso = "07-11-2024";
         String horaIngreso = "09:12:30";
@@ -70,7 +70,7 @@ public class SalidaVehiculoTest extends BaseTest {
 	}
 	
 	@Test
-	public void salidaVehiculoFueraDeHorarioEntreSemanaTest() throws BitacoraException {
+	public void salidaVehiculoFueraDeHorarioEntreSemana_DebeFallar() throws BitacoraException {
 		String fechaIngreso = "07-11-2024";
         String horaIngreso = "09:12:30";
         bitacora.registrarIngreso(placaValida, fechaIngreso, horaIngreso);
@@ -84,7 +84,7 @@ public class SalidaVehiculoTest extends BaseTest {
 	}
 	
 	@Test
-	public void salidaVehiculoFueraDeHorarioEnSabadoTest() throws BitacoraException {
+	public void salidaVehiculoFueraDeHorarioEnSabado_DebeFallar() throws BitacoraException {
 		String fechaIngreso = "09-11-2024";
         String horaIngreso = "09:12:30";
         bitacora.registrarIngreso(placaValida, fechaIngreso, horaIngreso);
@@ -98,7 +98,7 @@ public class SalidaVehiculoTest extends BaseTest {
 	}
 	
 	@Test
-	public void salidaVehiculoDebeSerElMismoDiaDeUltimoIngresoTest() throws BitacoraException {
+	public void salidaVehiculoDebeSerElMismoDiaDeUltimoIngreso_DebeFallar() throws BitacoraException {
 		String fechaIngreso = "07-11-2024"; // es jueves
         String horaIngreso = "07:12:30";
         bitacora.registrarIngreso(placaValida, fechaIngreso, horaIngreso);
@@ -112,7 +112,7 @@ public class SalidaVehiculoTest extends BaseTest {
 	}
 	
 	@Test
-	public void salidaVehiculoQueNoHaIngresadoTest() {
+	public void salidaVehiculoQueNoHaIngresado_DebeFallar() {
 		String fechaSalida = "08-11-2024"; // es viernes
         String horaSalida = "12:30:01";
         

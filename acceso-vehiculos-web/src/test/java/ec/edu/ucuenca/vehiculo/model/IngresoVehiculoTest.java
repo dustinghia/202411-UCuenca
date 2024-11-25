@@ -27,7 +27,7 @@ public class IngresoVehiculoTest extends BaseTest {
 	}
 
 	@Test
-    public void ingresoDeVehiculosConPlacasValidasEnHorarioValidoTest() throws BitacoraException {
+    public void ingresoDeVehiculosConPlacasValidasEnHorarioValido_Ok() throws BitacoraException {
 		String fechaIngreso = "07-11-2024";
         String horaIngreso = "09:12:30";
         
@@ -36,7 +36,7 @@ public class IngresoVehiculoTest extends BaseTest {
     }
 	
 	@Test
-	public void ingresoDeVehiculoConPlacaInvalidaEnHorarioValidoTest() {
+	public void ingresoDeVehiculoConPlacaInvalidaEnHorarioValido_DebeFallar() {
 		String fechaIngreso = "07-11-2024";
         String horaIngreso = "09:12:30";
         
@@ -46,7 +46,7 @@ public class IngresoVehiculoTest extends BaseTest {
 	}
 	
 	@Test
-	public void ingresoDeVehiculoConPlacaValidaEnHorarioPosteriorAlPermitidoEntreSemanaTest() {
+	public void ingresoDeVehiculoConPlacaValidaEnHorarioPosteriorAlPermitidoEntreSemana_DebeFallar() {
 		String fechaIngreso = "07-11-2024"; // es jueves
         String horaIngreso = "20:01:00";
         
@@ -56,7 +56,7 @@ public class IngresoVehiculoTest extends BaseTest {
 	}
 	
 	@Test
-	public void ingresoDeVehiculoConPlacaValidaEnHorarioAnteriorAlPermitidoEntreSemanaTest() {
+	public void ingresoDeVehiculoConPlacaValidaEnHorarioAnteriorAlPermitidoEntreSemana_DebeFallar() {
 		String fechaIngreso = "07-11-2024"; // es jueves
         String horaIngreso = "06:59:00";
         
@@ -66,7 +66,7 @@ public class IngresoVehiculoTest extends BaseTest {
 	}
 	
 	@Test
-	public void ingresoDeVehiculoConPlacaValidaEnHorarioPosteriorAlPermitidoEnSabadoTest() {
+	public void ingresoDeVehiculoConPlacaValidaEnHorarioPosteriorAlPermitidoEnSabado_DebeFallar() {
 		String fechaIngreso = "09-11-2024"; // es sabado
         String horaIngreso = "13:00:01";
         
@@ -76,7 +76,7 @@ public class IngresoVehiculoTest extends BaseTest {
 	}
 	
 	@Test
-	public void ingresoDeVehiculoConPlacaValidaEnHorarioAnteriorAlPermitidoEnSabadoTest() {
+	public void ingresoDeVehiculoConPlacaValidaEnHorarioAnteriorAlPermitidoEnSabado_DebeFallar() {
 		String fechaIngreso = "09-11-2024"; // es sabado
         String horaIngreso = "07:59:59";
         
@@ -86,7 +86,7 @@ public class IngresoVehiculoTest extends BaseTest {
 	}
 	
 	@Test
-	public void ingresoDeVehiculoConPlacaValidaEnDomingoNoAdmitidoTest() {
+	public void ingresoDeVehiculoConPlacaValidaEnDomingoNoAdmitido_DebeFallar() {
 		String fechaIngreso = "10-11-2024"; // es domingo
         String horaIngreso = "09:59:59";
         
@@ -96,7 +96,7 @@ public class IngresoVehiculoTest extends BaseTest {
 	}
 	
 	@Test
-    public void validarVehiculoHaIngresadoTest() throws BitacoraException {
+    public void validarVehiculoHaIngresado() throws BitacoraException {
         String fechaIngreso = "07-11-2024";
         String horaIngreso = "09:12:30";
         bitacora.registrarIngreso(placaValida, fechaIngreso, horaIngreso);
@@ -107,7 +107,7 @@ public class IngresoVehiculoTest extends BaseTest {
     }
 	
     @Test
-    public void validarVehiculoNoHaIngresadoTest() {
+    public void validarVehiculoNoHaIngresado() {
         String fechaIngreso = "07-11-2024";
         String horaIngreso = "09:12:30";
         // No se ha registrado ningún ingreso
@@ -118,7 +118,7 @@ public class IngresoVehiculoTest extends BaseTest {
     }
     
     @Test
-    public void validarVehiculoQueHaIngresadoYNoHaSalidoNoPuedeIngresarDeNuevoTest() throws BitacoraException {
+    public void validarVehiculoQueHaIngresadoYNoHaSalidoNoPuedeIngresarDeNuevo() throws BitacoraException {
     	String fechaPrimerIngreso = "07-11-2024";
         String horaPrimerIngreso = "09:12:30";
         bitacora.registrarIngreso(placaValida, fechaPrimerIngreso, horaPrimerIngreso);
