@@ -62,10 +62,7 @@ Recursos
 Los instaladores empleados en el ejercicio se encuentran en el siguiente link
 (no hace falta crear una cuenta de Dropbox):
 
-
-
-
-
+https://www.dropbox.com/scl/fo/nznv65at6sk6vxko99keg/AGbhu3nr87DBU0D7wlsBkAQ?rlkey=dd1e9dnar795u4apb1flqk3rd&dl=0
 
 
 
