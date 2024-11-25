@@ -15,8 +15,10 @@ de lunes a viernes, y hasta las 13:30 los días sábado. Un vehículo no podrá
 ingresar si existe un registro previo de ingreso "abierto" (que habiendo ingre-
 sado aún no ha salido).
 
-El sistema debe incluir un servicio para consulta de todos los registros y de
-los registros "abiertos" (vehículos que no han salido aún).
+Finalmente, el sistema debe incluir las opciones para consulta de todos los
+registros, de los registros "abiertos" (vehículos que no han salido aún) y el
+histórico de registros de un vehículo (placa) en particular en un rango de
+fechas dado.
 
 
 Requerimientos:
@@ -55,8 +57,15 @@ Criterios de aceptación:
 Consulta de información
 -----------------------
 
-Se debe incluir un servicio para consulta de todos los registros y de
-los registros "abiertos" (vehículos que no han salido aún).
+Se deben incluir los servicios para consulta de:
+- Todos los registros.
+- Los registros "abiertos" (vehículos que no han salido aún).
+- Los registros de una placa dado un rango de fechas.
+
+Criterios de aceptación (para la consulta por placa y rango de fechas):
+
+- Las fechas no deben distar por más de 30 días.
+- La fecha inicial de búsqueda no puede ser posterior a la fecha actual.
 
 
 Recursos
