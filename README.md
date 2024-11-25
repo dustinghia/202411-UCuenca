@@ -1,4 +1,4 @@
-El problema:
+El problema
 ===============================================================================
 
 Se ha solicitado a la DTIC la creación de un sistema para control de ingreso
@@ -54,3 +54,37 @@ Consulta de información
 
 Se debe incluir un servicio para consulta de todos los registros y de
 los registros "abiertos" (vehículos que no han salido aún).
+
+
+Recursos
+===============================================================================
+
+Los instaladores empleados en el ejercicio se encuentran en el siguiente link
+(no hace falta crear una cuenta de Dropbox):
+
+
+
+
+
+
+
+
+Configuración de WildFly
+===============================================================================
+
+WildFly sólo necesita un JRE/JDK compatible disponible para funcionar, en este
+caso se recomienda utilizar JDK 17.
+
+La única configuración que hará falta para el ejercicio es crear un datasource
+dentro de la sección datasources del archivo standalone-full.xml:
+
+	<datasource jta="true" jndi-name="java:/H2DS" pool-name="H2DS" enabled="true" use-java-context="true" statistics-enabled="${wildfly.datasources.statistics-enabled:${wildfly.statistics-enabled:false}}">
+		<connection-url>jdbc:h2:mem:h2s;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;MODE=${wildfly.h2.compatibility.mode:REGULAR}</connection-url>
+		<driver>h2</driver>
+		<security user-name="sa" password="sa"/>
+	</datasource>
+
+ 
+
+
+
