@@ -1,0 +1,229 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	
+	<groupId>ec.edu.ucuenca.vehiculo</groupId>
+	<artifactId>acceso-vehiculos-web</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
+	<name>Acceso vehiculos web</name>
+	<description>Acceso vehiculos web</description>
+	
+	<properties>
+		<maven.compiler.release>17</maven.compiler.release>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.build.outputEncoding>UTF-8</project.build.outputEncoding>
+		<java.source.version>17</java.source.version>
+		<java.target.version>17</java.target.version>
+		<javaee-api.version>10.0.0</javaee-api.version>
+		<!-- La version de WildFly 33.0.2 es 6.2.10.Final -->
+		<resteasy.version>6.2.10.Final</resteasy.version>
+		<!-- La version de WildFly 33.0.2 es 2.15.0 -->
+		<jackson.version>2.15.0</jackson.version>
+		<log4j2.version>2.23.1</log4j2.version>
+		<junit.version>5.9.2</junit.version>
+		<assertj.version>3.23.1</assertj.version>
+		<assertj-core.version>3.23.1</assertj-core.version>
+		<h2database.version>2.2.224</h2database.version>
+		<hibernate.version>6.4.4.Final</hibernate.version>
+		<jaxb-api.version>4.0.2</jaxb-api.version>
+		<eclipse-microprofile.version>6.0</eclipse-microprofile.version>
+		<!-- Esta versión de microprofile-rest-client es compatible con jakarta.ws.rs-api 4.0.0 -->
+		<eclipselink.version>4.0.2</eclipselink.version>
+		<jandex.version>3.2.3</jandex.version>
+	</properties>
+
+	<dependencies>
+	
+		<!-- JAKARTA EE Y SERVICIOS REST -->
+		
+		<dependency>
+			<groupId>jakarta.platform</groupId>
+			<artifactId>jakarta.jakartaee-api</artifactId>
+			<version>${javaee-api.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		
+		<!-- Se requiere la dependencia para excluir una versión desactualizada de jandex -->
+		<!-- https://mvnrepository.com/artifact/org.jboss.resteasy/resteasy-core -->
+		<dependency>
+		    <groupId>org.jboss.resteasy</groupId>
+		    <artifactId>resteasy-core</artifactId>
+		    <exclusions>
+		    	<exclusion>
+		    		<groupId>org.jboss</groupId>
+		    		<artifactId>jandex</artifactId>
+		    	</exclusion>
+		    </exclusions>
+		    <version>${resteasy.version}</version>
+		    <scope>provided</scope>
+		</dependency>
+		
+		<!-- Sólo se necesita el inicializador para usar RESTEasy -->
+		<!-- https://mvnrepository.com/artifact/org.jboss.resteasy/resteasy-servlet-initializer -->
+		<dependency>
+		    <groupId>org.jboss.resteasy</groupId>
+		    <artifactId>resteasy-servlet-initializer</artifactId>
+		    <version>${resteasy.version}</version>
+		</dependency>
+
+		<!-- JSON EN SERVICIOS REST -->
+
+		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${jackson.version}</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.jaxrs/jackson-jaxrs-json-provider -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.jaxrs</groupId>
+			<artifactId>jackson-jaxrs-json-provider</artifactId>
+			<version>${jackson.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.datatype/jackson-datatype-jsr310 -->
+		<dependency>
+		    <groupId>com.fasterxml.jackson.datatype</groupId>
+		    <artifactId>jackson-datatype-jsr310</artifactId>
+		    <version>${jackson.version}</version>
+		</dependency>
+				
+		
+		<!-- UTILITARIOS -->
+
+		<!-- 	https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+			<version>${log4j2.version}</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>${log4j2.version}</version>
+		</dependency>
+		
+		<!-- DEPENDENCIAS PARA TESTS -->
+		
+		<!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-engine -->
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.assertj/assertj-core -->
+		<dependency>
+			<groupId>org.assertj</groupId>
+			<artifactId>assertj-core</artifactId>
+			<version>${assertj-core.version}</version>
+			<scope>test</scope>
+		</dependency>
+		
+		<!-- DEPENDENCIAS PARA TESTS DE JPA:
+		https://rieckpil.de/howto-jpa-integration-tests-with-java-ee/
+		-->
+		
+		<!-- Base de datos en memoria para tests -->
+		<!-- https://mvnrepository.com/artifact/com.h2database/h2 -->
+		<dependency>
+		    <groupId>com.h2database</groupId>
+		    <artifactId>h2</artifactId>
+		    <version>${h2database.version}</version>
+		    <scope>test</scope>
+		</dependency>
+		
+		<!-- Se requiere para usar la BDD en la configuracion persistence.xml -->
+		<!-- https://mvnrepository.com/artifact/org.hibernate.orm/hibernate-core -->
+		<dependency>
+		    <groupId>org.hibernate.orm</groupId>
+		    <artifactId>hibernate-core</artifactId>
+		    <exclusions>
+		    	<exclusion>
+		    		<groupId>org.jboss</groupId>
+		    		<artifactId>jandex</artifactId>
+		    	</exclusion>
+		    </exclusions>
+		    <version>${hibernate.version}</version>
+		    <scope>test</scope>
+		</dependency>
+		
+		
+		<!-- Lo requiere Hibernate -->
+		<!-- https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api -->
+		<dependency>
+		    <groupId>javax.xml.bind</groupId>
+		    <artifactId>jaxb-api</artifactId>
+		    <version>2.3.1</version>
+		    <scope>test</scope>
+		</dependency>
+		
+		<!-- 
+			Microprofile es automágico. Básicamente hace disponible en el classpath un
+			microperfil de Java empresarial, con lo cual se pueden usar varias API
+			como JPA en tiempo de test.
+		-->
+		<!-- El scope es provided para poder correr las pruebas JUnit con el IDE -->
+		<!-- https://mvnrepository.com/artifact/org.eclipse.microprofile/microprofile -->
+		<dependency>
+		    <groupId>org.eclipse.microprofile</groupId>
+		    <artifactId>microprofile</artifactId>
+		    <version>${eclipse-microprofile.version}</version>
+		    <type>pom</type>
+		    <scope>provided</scope>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/org.eclipse.persistence/eclipselink -->
+		<dependency>
+		    <groupId>org.eclipse.persistence</groupId>
+		    <artifactId>eclipselink</artifactId>
+		    <version>${eclipselink.version}</version>
+		    <scope>test</scope>
+		</dependency>
+		
+		<!-- Versión actualizada de jandex: -->
+		<!-- https://mvnrepository.com/artifact/io.smallrye/jandex -->
+		<dependency>
+		    <groupId>io.smallrye</groupId>
+		    <artifactId>jandex</artifactId>
+		    <version>${jandex.version}</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-resources-plugin</artifactId>
+					<version>3.3.1</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.11.0</version>
+					<configuration>
+						<source>${java.source.version}</source>
+						<target>${java.target.version}</target>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+</project>

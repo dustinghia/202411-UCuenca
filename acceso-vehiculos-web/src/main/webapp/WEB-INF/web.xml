@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
+         version="6.0">
+	<!--	
+		La especificación de Servlet para Java EE 10 es Servlet 6, conforme se indica
+		en la documentación:
+		
+		https://jakarta.ee/xml/ns/jakartaee/#10	
+	-->
+	<display-name>acceso-vehiculos-web</display-name>
+	
+	<!-- Para usar Jackson de manera explícita sin generar advertencias al desplegar: -->
+	<context-param>
+        <param-name>resteasy.preferJacksonOverJsonB</param-name>
+        <param-value>true</param-value>
+    </context-param>
+
+	<!-- Una página de inicio para prueba de humo -->
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
+	
+</web-app>
