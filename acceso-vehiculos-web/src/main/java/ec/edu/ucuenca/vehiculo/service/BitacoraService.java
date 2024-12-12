@@ -95,4 +95,67 @@ public class BitacoraService {
 		}
 	}
 	
+	@GET
+	@Path("/activos")
+	@Produces({ MediaType.APPLICATION_JSON})
+	public Response recuperarActivos() {
+		LOGGER.info("Consultando vehiculos activos... ");
+		
+		List<RegistroEntradaSalida> vehiculosActivos = bitacora.obtenerRegistrosAbiertos();
+
+		ObjectMapper om = new ObjectMapper();
+		om.registerModule(new JavaTimeModule());
+		
+		try {
+			String result = om.writeValueAsString(vehiculosActivos);
+			
+			return Response.status(Response.Status.OK) // 200 OK
+					.entity(result)
+					.build();
+		
+		} catch (JsonProcessingException e) {
+			LOGGER.error(e.getMessage());
+			return Response.status(Response.Status.BAD_REQUEST) // 400 Bad Request
+					.entity(e.getMessage())
+					.build();
+		}
+	}
+
+	//recuperar registros de una placa entre dos fechas
+	@POST
+	@Path("/placa")
+	@Produces({ MediaType.APPLICATION_JSON})
+	@Consumes({ MediaType.APPLICATION_JSON})
+	public Response recuperarPorPlaca(String placa, String fechaInicio, String fechaFin) {
+		LOGGER.info("Consultando vehiculos por placa... ");
+
+
+		
+		try {
+			List<RegistroEntradaSalida> vehiculosPorPlaca = bitacora.obtenerRegistrosEntreFechas(fechaInicio, fechaFin, placa);
+	
+			ObjectMapper om = new ObjectMapper();
+	
+			om.registerModule(new JavaTimeModule());
+			String result = om.writeValueAsString(vehiculosPorPlaca);
+
+			return Response.status(Response.Status.OK) // 200 OK
+					.entity(result)
+					.build();
+
+		} catch (JsonProcessingException e) {
+			LOGGER.error(e.getMessage());
+			return Response.status(Response.Status.BAD_REQUEST) // 400 Bad Request
+					.entity(e.getMessage())
+					.build();
+		} catch (BitacoraException e) {
+			LOGGER.error(e.getMessage());
+			return Response.status(Response.Status.BAD_REQUEST) // 400 Bad Request
+					.entity(e.getMessage())
+					.build();
+		}
+
+	}
+
+	
 }
